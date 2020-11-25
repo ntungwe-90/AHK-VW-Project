@@ -1,0 +1,27 @@
+.content {
+    height: 80vh;
+}
+
+.images {
+    height: 80vh;
+}
+.footer{
+    background-color: #020224;
+    padding-top: 2rem;
+    padding-bottom:0px;
+    color: white;
+    margin-top: 0px;
+}
+.carouselExampleCaptions {
+    height: 100vh;
+}
+
+.carousel-caption {
+    transform: translateY(-50%);
+    bottom: 0;
+    top: 50%;
+}
+.order-btn {
+    background-color: #020224;
+    border-color: #020224;
+}
