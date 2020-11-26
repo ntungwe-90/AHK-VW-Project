@@ -5,63 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/parts-form.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <img src="images/logo.png" alt="logo" height="50px" width="50px"/>
-        </div>
-
-        <div class="row">
-            <h2>ADD CAR PARTS</h2>    
+            <div class="col">
+              <div class="logo">
+                <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px"/>
+              </div>
+            </div>
         </div>
 
         <div class="row">
             <div class="col">
+              <div class="title">
+                <h4 class="text-center">Add car parts</h4>
+              </div>
+            </div>    
+        </div>
+
+        <div class="row">
+          <form class="mx-auto d-block parts-form">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Batch Number</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Part number</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Reference Number</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Category</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Car Parts</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Unit Price</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Quantity</label>
+                <input type="email" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Amount</label>
+                <input type="password" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+            <!-- <div class="col">
                 <form>
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
+                        <label for="inputEmail4">Batch Number</label>
                         <input type="email" class="form-control" id="inputEmail4">
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
+                        <label for="inputPassword4">Part Number</label>
                         <input type="password" class="form-control" id="inputPassword4">
                       </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="inputEmail4">Email</label>
+                          <label for="inputEmail4">Reference Number</label>
                           <input type="email" class="form-control" id="inputEmail4">
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="inputPassword4">Password</label>
+                          <label for="inputPassword4">Category</label>
                           <input type="password" class="form-control" id="inputPassword4">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="inputEmail4">Email</label>
+                          <label for="inputEmail4">Car Part</label>
                           <input type="email" class="form-control" id="inputEmail4">
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="inputPassword4">Password</label>
+                          <label for="inputPassword4">Unit Price</label>
                           <input type="password" class="form-control" id="inputPassword4">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="inputEmail4">Email</label>
+                          <label for="inputEmail4">Quantity</label>
                           <input type="email" class="form-control" id="inputEmail4">
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="inputPassword4">Password</label>
+                          <label for="inputPassword4">Amount</label>
                           <input type="password" class="form-control" id="inputPassword4">
                         </div>
                       </div>
                     <button type="submit" class="btn btn-primary">Sign in</button>
                   </form>
-            </div>
+            </div> -->
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
