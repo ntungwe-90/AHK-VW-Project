@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/part-details.css">
 </head>
+
 <body>
     <div class="nav-section">
         <div class="container-fluid">
@@ -29,7 +31,8 @@
                 </div>
                 <div class="col text-center">
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2 search" type="search" placeholder="Search"
+                            aria-label="Search">
                         <input type="submit" hidden>
                     </form>
                 </div>
@@ -40,7 +43,9 @@
     <div class="titlebar">
         <div class="container">
             <div class="row">
-                <div class="col"><h4>Logistics</h4></div>
+                <div class="col">
+                    <h4>Logistics</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -62,6 +67,51 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Modal for updating Allocated parts -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Faulty Parts</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="mx-auto d-block allocated-form">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Name</label>
+                                                    <input type="text" class="form-control" id="inputEmail4" value="Irene" readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Warehouse</label>
+                                                    <input type="text" class="form-control" id="inputPassword4" value="Tema" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Car part</label>
+                                                    <input type="email" class="form-control" id="inputEmail4" value="Door" readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Quantity</label>
+                                                    <input type="number" class="form-control" id="inputPassword4" value="100" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail4">Number of Faulty Parts</label>
+                                                <input type="number" class="form-control" id="inputEmail4"
+                                                    placeholder="Enter number of faulty parts">
+                                            </div>
+
+                                            <a href="allocated-parts.html" class="btn btn-dark">Submit</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <tr>
                             <td>1</td>
                             <td>12/10/19</td>
@@ -69,9 +119,10 @@
                             <td>Tema</td>
                             <td>Door</td>
                             <td>100</td>
-                            <td>10</td>
+                            <td>N/A</td>
                             <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal">Update</button>
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
@@ -84,7 +135,7 @@
                             <td>Kaneshie</td>
                             <td>car seats</td>
                             <td>100</td>
-                            <td>15</td>
+                            <td>N/A</td>
                             <td>
                                 <button type="button" class="btn btn-secondary btn-sm">Update</button>
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
@@ -99,7 +150,7 @@
                             <td>Tesano</td>
                             <td>windows</td>
                             <td>100</td>
-                            <td>10</td>
+                            <td>N?A</td>
                             <td>
                                 <button type="button" class="btn btn-secondary btn-sm">Update</button>
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
@@ -114,7 +165,7 @@
                             <td>Tema</td>
                             <td>lights</td>
                             <td>200</td>
-                            <td>10</td>
+                            <td>N/A</td>
                             <td>
                                 <button type="button" class="btn btn-secondary btn-sm">Update</button>
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
@@ -127,7 +178,8 @@
     </div>
     <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script> -->
-<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,67 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>allocate car parts</title>
+    <title>Allocated parts</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/allocated-form.css">
+    <link rel="stylesheet" type="text/css" href="css/part-details.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <div class="logo">
-                <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px"/>
-              </div>
+    <div class="nav-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-white username">Irene Emade</button>
+                        <button type="button" class="btn btn-white dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <img src="images/logo.png" class="logo" />
+                </div>
+                <div class="col text-center">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2 search" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <input type="submit" hidden>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col">
-              <div class="title">
-                <h4 class="text-center">Allocated car parts</h4>
-              </div>
-            </div>    
-        </div>
-
-        <div class="row">
-            <form class="mx-auto d-block allocated-form">
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Name</label>
-                    <input type="email" class="form-control" id="inputEmail4">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Warehouse</label>
-                    <input type="password" class="form-control" id="inputPassword4">
-                  </div>
+    <div class="titlebar">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4>Allocated Parts</h4>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputEmail4">Car part</label>
-                      <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">Quantity</label>
-                      <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputEmail4">Faulty</label>
-                      <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    
-                  </div>
-
-                  <a href="#" class="btn btn-primary">Submit</a>
-            </form>
+            </div>
         </div>
     </div>
+
+    <div class="container-fluid part-details">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="row">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col"> Warehouse</th>
+                            <th scope="col">Car parts</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">#Faulty</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Modal for updating Allocated parts -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="mx-auto d-block allocated-form">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Name</label>
+                                                    <input type="text" class="form-control" id="inputEmail4" value="Irene">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Warehouse</label>
+                                                    <input type="text" class="form-control" id="inputPassword4" value="Tema">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Car part</label>
+                                                    <input type="email" class="form-control" id="inputEmail4" value="Door">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Quantity</label>
+                                                    <input type="number" class="form-control" id="inputPassword4" value="100">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail4">Number of Faulty Parts</label>
+                                                <input type="number" class="form-control" id="inputEmail4" disabled
+                                                    placeholder="To be filled by Logistics officer">
+                                            </div>
+
+                                            <a href="allocated-parts.html" class="btn btn-dark">Submit</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <tr>
+                            <td>1</td>
+                            <td>12/10/19</td>
+                            <td>Irene Emade</td>
+                            <td>Tema</td>
+                            <td>Door</td>
+                            <td>100</td>
+                            <td>N/A</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>2</td>
+                            <td>8/01/20</td>
+                            <td>Dorcas Asare</td>
+                            <td>Kaneshie</td>
+                            <td>car seats</td>
+                            <td>100</td>
+                            <td>N/A</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>20/07/20</td>
+                            <td>Sahadatu larabu</td>
+                            <td>Tesano</td>
+                            <td>windows</td>
+                            <td>100</td>
+                            <td>N?A</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>4</td>
+                            <td>12/11/20</td>
+                            <td>Sussan Anukem</td>
+                            <td>Tema</td>
+                            <td>lights</td>
+                            <td>200</td>
+                            <td>N/A</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
