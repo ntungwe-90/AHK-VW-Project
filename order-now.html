@@ -1,70 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order now</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/parts-form.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order now</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/parts-form.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <div class="logo">
-                <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px"/>
-              </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="logo">
+          <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px" />
         </div>
-
-        <div class="row">
-            <div class="col">
-              <div class="title">
-                <h4 class="text-center">Order now</h4>
-              </div>
-            </div>    
-        </div>
-
-        <div class="row">
-          <form class="mx-auto d-block parts-form">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Full name</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Category</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Car part</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Quantity</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Telephone number</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Location</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-            </div>
-
-             <a href="index.html" class="btn btn-primary">Submit</a>
-          </form>
-        </div>
+      </div>
     </div>
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <div class="row">
+      <div class="col">
+        <div class="title">
+          <h4 class="text-center">Order now</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <form class="mx-auto d-block parts-form" onsubmit="handleOrderRequest(event)">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fullName">Full name</label>
+            <input type="text" class="form-control" name="fullName">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" name="category">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="carPart">Car part</label>
+            <input type="text" class="form-control" name="carPart">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="phone">Telephone number</label>
+            <input type="number" class="form-control" name="phone">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" name="location">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+      authDomain: "volkswagen-g3.firebaseapp.com",
+      databaseURL: "https://volkswagen-g3.firebaseio.com",
+      projectId: "volkswagen-g3",
+      storageBucket: "volkswagen-g3.appspot.com",
+      messagingSenderId: "754101747048",
+      appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
+    };
+  </script>
+
+  <script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
+    // Submit orders
+    const handleOrderRequest = (event) => {
+      event.preventDefault()
+      console.log("handle requests");
+      db.collection("orders").add({
+        fullName: event.target.fullName.value,
+        category: event.target.category.value,
+        carPart: event.target.carPart.value,
+        quantity: event.target.quantity.value,
+        location: event.target.location.value,
+        phone: event.target.phone.value,
+      })
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          event.target.reset()
+          window.location.href = "./order-success.html"
+        })
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+    }
+
+  </script>
+
 </body>
+
 </html>
