@@ -106,7 +106,7 @@
                                                     placeholder="Enter number of faulty parts">
                                             </div>
 
-                                            <a href="allocated-parts.html" class="btn btn-dark">Submit</a>
+                                            <a href="allocated-parts.html" class="btn btn-secondary">Submit</a>
                                         </form>
                                     </div>
                                 </div>
@@ -180,6 +180,48 @@
 <script type="text/javascript" src="js/bootstrap.js"></script> -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+          authDomain: "volkswagen-g3.firebaseapp.com",
+          databaseURL: "https://volkswagen-g3.firebaseio.com",
+          projectId: "volkswagen-g3",
+          storageBucket: "volkswagen-g3.appspot.com",
+          messagingSenderId: "754101747048",
+          appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
+        };
+      </script>
+    
+      <script>
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+    
+        // Submit orders
+        const handleOrderRequest = (event) => {
+          event.preventDefault()
+          console.log("handle requests");
+          db.collection("orders").add({
+            fullName: event.target.fullName.value,
+            category: event.target.category.value,
+            carPart: event.target.carPart.value,
+            quantity: event.target.quantity.value,
+            location: event.target.location.value,
+            phone: event.target.phone.value,
+          })
+            .then(function (docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              event.target.reset()
+              window.location.href = "./order-success.html"
+            })
+            .catch(function (error) {
+              console.error("Error adding document: ", error);
+            });
+        }
+    
+      </script>
 </body>
 
 </html>

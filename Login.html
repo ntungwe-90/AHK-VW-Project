@@ -1,46 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/parts-form.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/parts-form.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <div class="logo">
-                <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px"/>
-              </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="logo">
+          <img src="images/logo.png" class="mx-auto d-block" alt="logo" height="50px" width="50px" />
         </div>
-
-        <div class="row">
-            <div class="col">
-              <div class="title">
-                <h4 class="text-center">Login</h4>
-              </div>
-            </div>    
-        </div>
-
-        <div class="row">
-          <form class="mx-auto d-block parts-form">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
-            
-              <a href="parts-details.html" class="btn btn-primary">Login</a>
-          </form>
-        </div>
+      </div>
     </div>
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <div class="row">
+      <div class="col">
+        <div class="title">
+          <h4 class="text-center">Login</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <form class="mx-auto d-block parts-form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <a href="parts-details.html" class="btn btn-secondary">Login</a>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+      authDomain: "volkswagen-g3.firebaseapp.com",
+      databaseURL: "https://volkswagen-g3.firebaseio.com",
+      projectId: "volkswagen-g3",
+      storageBucket: "volkswagen-g3.appspot.com",
+      messagingSenderId: "754101747048",
+      appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script>
+    var db = firebase.firestore();
+
+    db.collection("users").add({
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  </script>
 </body>
+
 </html>
