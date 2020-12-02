@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order now</title>
+    <title>allocate car parts</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/parts-form.css" />
+    <link rel="stylesheet" type="text/css" href="css/allocated-form.css" />
   </head>
 
   <body>
@@ -27,24 +27,24 @@
       <div class="row">
         <div class="col">
           <div class="title">
-            <h4 class="text-center">Order now</h4>
+            <h4 class="text-center">Allocate parts to Warehouses</h4>
           </div>
         </div>
       </div>
 
       <div class="row">
         <form
-          class="mx-auto d-block parts-form"
-          onsubmit="handleOrderRequest(event)"
+          class="mx-auto d-block allocated-form"
+          onsubmit="allocateCarParts(event)"
         >
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="fullName">Full name</label>
-              <input type="text" class="form-control" name="fullName" />
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" />
             </div>
             <div class="form-group col-md-6">
-              <label for="category">Category</label>
-              <input type="text" class="form-control" name="category" />
+              <label for="warehouse">Warehouse</label>
+              <input type="text" class="form-control" name="warehouse" />
             </div>
           </div>
 
@@ -58,16 +58,15 @@
               <input type="number" class="form-control" name="quantity" />
             </div>
           </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="phone">Telephone number</label>
-              <input type="number" class="form-control" name="phone" />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="location">Location</label>
-              <input type="text" class="form-control" name="location" />
-            </div>
+          <div class="form-group">
+            <label for="numFaulty">Number of Faulty Parts</label>
+            <input
+              type="text"
+              class="form-control"
+              name="numFaulty"
+              disabled
+              placeholder="To be filled by Logistics officer"
+            />
           </div>
 
           <button type="submit" class="btn btn-secondary">Submit</button>
@@ -102,23 +101,22 @@
       firebase.initializeApp(firebaseConfig);
       var db = firebase.firestore();
 
-      // Submit orders
-      const handleOrderRequest = (event) => {
+      // Allocate parts
+      const allocateCarParts = (event) => {
         event.preventDefault();
-        console.log("handle requests");
-        db.collection("orders")
+        console.log(allocateCarParts);
+        db.collection("allocatedParts")
           .add({
-            fullName: event.target.fullName.value,
-            category: event.target.category.value,
+            name: event.target.name.value,
+            warehouse: event.target.warehouse.value,
             carPart: event.target.carPart.value,
             quantity: event.target.quantity.value,
-            location: event.target.location.value,
-            phone: event.target.phone.value,
+            numFaulty: event.target.numFaulty.value,
           })
           .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
             event.target.reset();
-            window.location.href = "order-success.html";
+            window.location.href = "allocated-parts.html";
           })
           .catch(function (error) {
             console.error("Error adding document: ", error);

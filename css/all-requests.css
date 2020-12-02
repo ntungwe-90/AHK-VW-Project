@@ -1,0 +1,36 @@
+.nav-section {
+  min-height: 100px;
+  border-bottom: 1px solid #0b215624;
+  padding: 1rem 0;
+}
+
+.nav-section .username {
+  font-weight: 600;
+}
+
+.nav-section .search {
+  /* background-color:  #00184f; */
+  border-radius: 20px;
+  /* color: whitesmoke; */
+  width: 70%;
+}
+
+.nav-section .logo {
+  height: 80px;
+}
+
+.titlebar {
+  background-color: #eee;
+  min-height: 50px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.part-details {
+  margin-top: 3rem;
+}
+
+.part-details thead {
+  background-color: #00184f;
+  color: white;
+}
