@@ -48,16 +48,17 @@
                 </div>
                 <div class="col text-right">
                     <div class="btn-group">
-                        <a href="parts-form.html"><button type="button" class="btn btn-secondary">Add a new part</button></a>
-                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="sr-only">Toggle Dropdown</span>
+                        <a href="parts-form.html"><button type="button" class="btn btn-secondary">Add a new
+                                part</button></a>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="Allocated-parts.html">Allocate part</a>
-                          <a class="dropdown-item" href="all-request.html">View all requests</a>
+                            <a class="dropdown-item" href="Allocated-parts.html">Allocate part</a>
+                            <a class="dropdown-item" href="all-request.html">View all requests</a>
                         </div>
-                      </div>
-                    <!-- <a href="parts-form.html"><button class="btn btn-dark">Add a new part</button></a> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,91 +83,9 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>12/10/18</td>
-                            <td>24PP</td>
-                            <td>HSC0424PP</td>
-                            <td>HSC0424</td>
-                            <td>Car body</td>
-                            <td>Door</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50000</td>
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
+                    <tbody id="allParts">
 
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>12/10/18</td>
-                            <td>24PP</td>
-                            <td>HSC0424PP</td>
-                            <td>HSC0424</td>
-                            <td>Car body</td>
-                            <td>Door</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50000</td>
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>12/10/18</td>
-                            <td>24PP</td>
-                            <td>HSC0424PP</td>
-                            <td>HSC0424</td>
-                            <td>Car body</td>
-                            <td>Door</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50000</td>
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>12/10/18</td>
-                            <td>24PP</td>
-                            <td>HSC0424PP</td>
-                            <td>HSC0424</td>
-                            <td>Car body</td>
-                            <td>Door</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50000</td>
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>12/10/18</td>
-                            <td>24PP</td>
-                            <td>HSC0424PP</td>
-                            <td>HSC0424</td>
-                            <td>Car body</td>
-                            <td>Door</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50000</td>
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -174,7 +93,83 @@
     </div>
 
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+            authDomain: "volkswagen-g3.firebaseapp.com",
+            databaseURL: "https://volkswagen-g3.firebaseio.com",
+            projectId: "volkswagen-g3",
+            storageBucket: "volkswagen-g3.appspot.com",
+            messagingSenderId: "754101747048",
+            appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
+        };
+        
+    </script>
+
+    <script>
+        var db = firebase.firestore();
+
+        function getAllParts() {
+            var allPartsTable = document.getElementById('allParts');
+            db.collection("carParts").get().then((querySnapshot) => {
+                allPartsTable.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    // console.log(`${doc.id} => ${doc.data().projectName}`);
+                    let data = doc.data();
+                    console.log(data);
+                    let newRow = `
+                    <tr>
+                            <td scope="row">1</td>
+                            <td>${getFormattedDate(data.timestamp.toDate())}</td>
+                            <td>${data.batchNum}</td>
+                            <td>${data.partNum}</td>
+                            <td>${data.referenceNum}</td>
+                            <td>${data.category}</td>
+                            <td>${data.carPart}</td>
+                            <td>${data.unitPrice}</td>
+                            <td>${data.quantity}</td>
+                            <td>${data.amount}</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deletePart('${doc.id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `
+                    allPartsTable.innerHTML = allPartsTable.innerHTML + newRow
+                });
+            });
+        }
+
+        function getFormattedDate(date) {
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+
+            return month + '/' + day + '/' + year + ', ' + date.toLocaleTimeString();
+        }
+
+        function deletePart(id) {
+            db.collection("carParts").doc(id).delete().then(function () {
+                console.log("Document successfully deleted!");
+                window.location.href  =  window.location.href 
+            }).catch(function (error) {
+                console.error("Error removing document: ", error);
+            });
+        }
+
+        getAllParts()
+    </script>
 </body>
 
 </html>

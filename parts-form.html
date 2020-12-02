@@ -114,10 +114,11 @@
         partNum: event.target.partNum.value,
         referenceNum: event.target.referenceNum.value,
         category: event.target.category.value,
-        carParts: event.target.carParts.value,
+        carPart: event.target.carParts.value,
         unitPrice: event.target.unitPrice.value,
         quantity: event.target.quantity.value,
         amount: event.target.amount.value,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);

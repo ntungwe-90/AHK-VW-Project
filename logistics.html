@@ -66,52 +66,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Modal for updating Allocated parts -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Faulty Parts</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="mx-auto d-block allocated-form">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Name</label>
-                                                    <input type="text" class="form-control" id="inputEmail4" value="Irene" readonly>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputPassword4">Warehouse</label>
-                                                    <input type="text" class="form-control" id="inputPassword4" value="Tema" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Car part</label>
-                                                    <input type="email" class="form-control" id="inputEmail4" value="Door" readonly>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputPassword4">Quantity</label>
-                                                    <input type="number" class="form-control" id="inputPassword4" value="100" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail4">Number of Faulty Parts</label>
-                                                <input type="number" class="form-control" id="inputEmail4"
-                                                    placeholder="Enter number of faulty parts">
-                                            </div>
-
-                                            <a href="allocated-parts.html" class="btn btn-secondary">Submit</a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <tbody id="logistics">
+                        
                         <tr>
                             <td>1</td>
                             <td>12/10/19</td>
@@ -126,8 +82,7 @@
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
-                    </tbody>
-                    <tbody>
+                   
                         <tr>
                             <td>2</td>
                             <td>8/01/20</td>
@@ -141,8 +96,7 @@
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
-                    </tbody>
-                    <tbody>
+                   
                         <tr>
                             <td>3</td>
                             <td>20/07/20</td>
@@ -150,14 +104,13 @@
                             <td>Tesano</td>
                             <td>windows</td>
                             <td>100</td>
-                            <td>N?A</td>
+                            <td>N/A</td>
                             <td>
                                 <button type="button" class="btn btn-secondary btn-sm">Update</button>
                                 <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
-                    </tbody>
-                    <tbody>
+                    
                         <tr>
                             <td>4</td>
                             <td>12/11/20</td>
@@ -168,11 +121,56 @@
                             <td>N/A</td>
                             <td>
                                 <button type="button" class="btn btn-secondary btn-sm">Update</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deletePart('${doc.id}')">Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <!-- Modal for updating Allocated parts -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Faulty Parts</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="mx-auto d-block allocated-form">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Name</label>
+                                        <input type="text" class="form-control" id="inputEmail4" value="Irene" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Warehouse</label>
+                                        <input type="text" class="form-control" id="inputPassword4" value="Tema" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Car part</label>
+                                        <input type="email" class="form-control" id="inputEmail4" value="Door" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Quantity</label>
+                                        <input type="number" class="form-control" id="inputPassword4" value="100" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail4">Number of Faulty Parts</label>
+                                    <input type="number" class="form-control" id="inputEmail4"
+                                        placeholder="Enter number of faulty parts">
+                                </div>
+
+                                <a href="allocated-parts.html" class="btn btn-secondary">Submit</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -181,22 +179,30 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
-          authDomain: "volkswagen-g3.firebaseapp.com",
-          databaseURL: "https://volkswagen-g3.firebaseio.com",
-          projectId: "volkswagen-g3",
-          storageBucket: "volkswagen-g3.appspot.com",
-          messagingSenderId: "754101747048",
-          appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
-        };
-      </script>
-    
-      <script>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+   <script>
+       // Your web app's Firebase configuration
+       var firebaseConfig = {
+           apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+           authDomain: "volkswagen-g3.firebaseapp.com",
+           databaseURL: "https://volkswagen-g3.firebaseio.com",
+           projectId: "volkswagen-g3",
+           storageBucket: "volkswagen-g3.appspot.com",
+           messagingSenderId: "754101747048",
+           appId: "1:754101747048:web:4434e38f5f1635fc6c6add"
+       };
+       
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+   </script>
+
+     <script>
         var db = firebase.firestore();
     
         // Submit orders
@@ -210,6 +216,7 @@
             quantity: event.target.quantity.value,
             location: event.target.location.value,
             phone: event.target.phone.value,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
           })
             .then(function (docRef) {
               console.log("Document written with ID: ", docRef.id);
@@ -222,6 +229,55 @@
         }
     
       </script>
+      <script>
+        function getlogisticManager() {
+            var logisticsTable = document.getElementById('logistics');
+            db.collection("orders").get().then((querySnapshot) => {
+                logisticsTable.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    // console.log(`${doc.id} => ${doc.data().projectName}`);
+                    let data = doc.data();
+                    console.log(doc.data().timestamp);
+                    let newRow = `
+                    <tr>
+                            <td scope="row">1</td>
+                            <td>${getFormattedDate(data.timestamp.toDate())}</td>
+                            <td>${data.name}</td>
+                            <td>${data.warehouse}</td>
+                            <td>${data.carPart}</td>
+                            <td>${data.quantity}</td>
+                            <td>${data.faultyNum}</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary btn-sm">Update</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deletePart('${doc.id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `
+                    logisticsTable.innerHTML = logisticsTable.innerHTML + newRow
+                });
+            });
+        }
+
+        function getFormattedDate(date) {
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+
+            return month + '/' + day + '/' + year + ', ' + date.toLocaleTimeString();
+        }
+
+        function deletePart(id) {
+            // db.collection("logistics").doc(id).delete().then(function () {
+            //     console.log("Document successfully deleted!");
+            //     window.location.href  =  window.location.href 
+            // }).catch(function (error) {
+            //     console.error("Error removing document: ", error);
+            // });
+            console.log("Irene");
+        }
+
+        // getlogisticManager()
+    </script>
 </body>
 
 </html>
