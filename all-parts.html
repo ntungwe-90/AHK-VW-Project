@@ -83,6 +83,9 @@
                 >
                   Allocate part
                 </button>
+                <a class="dropdown-item" href="all-allocated-parts.html"
+                  >View allocated parts</a
+                >
                 <a class="dropdown-item" href="all-requests.html"
                   >View all requests</a
                 >
@@ -401,7 +404,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Allocate car part</h5>
             <button
               type="button"
               class="close"
@@ -596,6 +599,7 @@
             carPart: event.target.carPart.value,
             quantity: event.target.quantity.value,
             numFaulty: event.target.numFaulty.value,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
           .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
