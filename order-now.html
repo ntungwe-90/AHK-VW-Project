@@ -114,6 +114,7 @@
             quantity: event.target.quantity.value,
             location: event.target.location.value,
             phone: event.target.phone.value,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
           .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order details</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/order-details.css">
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const orderDetailsData = {
+            id: urlParams.get('id'),
+        }
+    </script>
+</head>
+
+<body>
+    <div class="nav-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-white username">Irene Emade</button>
+                        <button type="button" class="btn btn-white dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <img src="images/logo.png" class="logo" />
+                </div>
+                <div class="col text-center">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2 search" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <input type="submit" hidden>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="titlebar">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4>Order details</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card w-50 mx-auto d-block" id="order-data" style="margin-top: 50px;">
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+            authDomain: "volkswagen-g3.firebaseapp.com",
+            databaseURL: "https://volkswagen-g3.firebaseio.com",
+            projectId: "volkswagen-g3",
+            storageBucket: "volkswagen-g3.appspot.com",
+            messagingSenderId: "754101747048",
+            appId: "1:754101747048:web:4434e38f5f1635fc6c6add",
+        };
+    </script>
+
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        const getOrderDetails = () => {
+            var order_data = document.getElementById("order-data")
+            db.collection("orders")
+                .doc(orderDetailsData.id)
+                .get()
+                .then((docRef) => {
+                    order_data.innerHTML = ""
+                    let data = docRef.data()
+                    let orderData = `
+                        <div class="card-body">
+                            <h5 class="card-title"><small>Date: </small>${getFormattedDate(data.timestamp.toDate())}</h5>
+                            <h5 class="card-title"><small>Category: </small>${data.category}</h5>
+                            <h5 class="card-title"><small>Parts: </small>${data.carPart}</h5>
+                            <h5 class="card-title"><small>Quantity: </small>${data.quantity}</h5>
+                            <h5 class="card-title"><small>Telephone: </small>${data.phone}</h5>
+                        </div>`
+
+                    order_data.innerHTML = orderData
+                })
+        }
+
+        getOrderDetails()
+
+        function getFormattedDate(date) {
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, "0");
+            let day = date.getDate().toString().padStart(2, "0");
+
+            return (
+                month + "/" + day + "/" + year + ", " + date.toLocaleTimeString()
+            );
+        }
+    </script>
+
+</body>
+
+</html>
