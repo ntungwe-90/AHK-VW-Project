@@ -7,6 +7,7 @@
   <title>Part Details</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="css/all-parts.css" />
+  <link rel="stylesheet" type="text/css" href="css/gen.css" />
 </head>
 
 <body>
@@ -62,9 +63,19 @@
               </button>
               <a class="dropdown-item" href="all-allocated-parts.html">View allocated parts</a>
               <a class="dropdown-item" href="all-requests.html">View all requests</a>
+              <a class="dropdown-item" href="pie-chart.html">Financial analytics</a>
             </div>
           </div>
-          <!-- <a href="parts-form.html"><button class="btn btn-dark">Add a new part</button></a> -->
+
+          <a href="recycle-bin.html">
+            <button class="btn btn-lg" style="background-color:transparent;">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+              Trash
+           </button>
+          </a>
         </div>
       </div>
     </div>
@@ -98,10 +109,10 @@
   <div class="modal fade" id="addPartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header modal-title-bar">
           <h5 class="modal-title" id="exampleModalLabel">Add new part</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span style="color: white;" aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
@@ -151,71 +162,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">Add</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="updatePartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add new part</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <form class="mx-auto d-block parts-form" onsubmit="handleAddCarPart(event)">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="batchNum">Batch Number</label>
-                  <input type="text" class="form-control" name="batchNum" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="partNum">Part number</label>
-                  <input type="text" class="form-control" name="partNum" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="referenceNum">Reference Number</label>
-                  <input type="text" class="form-control" name="referenceNum" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="category">Category</label>
-                  <input type="text" class="form-control" name="category" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="carParts">Car Parts</label>
-                  <input type="text" class="form-control" name="carParts" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="unitPrice">Unit Price</label>
-                  <input type="number" class="form-control" name="unitPrice" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="quantity">Quantity</label>
-                  <input type="number" class="form-control" name="quantity" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="amount">Amount</label>
-                  <input type="number" class="form-control" name="amount" required />
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="submit" class="btn btn-secondary">Add</button>
             </form>
           </div>
         </div>
@@ -226,10 +173,10 @@
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header modal-title-bar">
           <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" style="color: white;">&times;</span>
           </button>
         </div>
         <div class="modal-footer">
@@ -237,7 +184,7 @@
             Cancel
           </button>
           <button type="button" class="btn btn-danger" onclick="deletePart()">
-            Delete
+            Move to trash
           </button>
         </div>
       </div>
@@ -247,10 +194,10 @@
   <div class="modal fade" id="allocatePartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header modal-title-bar">
           <h5 class="modal-title" id="exampleModalLabel">Allocate car part</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span style="color: white;" aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
@@ -347,13 +294,12 @@
         .catch(function (error) {
           console.error("Error adding document: ", error);
         });
-    };
+    }
 
     function getAllParts() {
       var allPartsTable = document.getElementById("allParts");
       db.collection("carParts")
-        .get()
-        .then((querySnapshot) => {
+        .onSnapshot((querySnapshot) => {
           allPartsTable.innerHTML = "";
           let index = 0;
           querySnapshot.forEach((doc) => {
@@ -378,10 +324,73 @@
                     type="button"
                     class="btn btn-secondary btn-sm"
                     data-toggle="modal"
-                    data-target="#updatePartModal"
+                    data-target="#updatePartModal${index}"
                   >
                     Update
                   </button>
+                  <div class="modal fade" id="updatePartModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header modal-title-bar">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit part</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span style="color: white;" aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <form class="mx-auto d-block parts-form" onsubmit="editCarPart(event,'${doc.id}')">
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="batchNum">Batch Number</label>
+                                    <input type="text" class="form-control" name="batchNum" value="${data.batchNum}" required />
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="partNum">Part number</label>
+                                    <input type="text" class="form-control" value="${data.partNum}" name="partNum" required />
+                                  </div>
+                                </div>
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="referenceNum">Reference Number</label>
+                                    <input type="text" class="form-control" value="${data.referenceNum}" name="referenceNum" required />
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="category">Category</label>
+                                    <input type="text" class="form-control" value="${data.category}" name="category" required />
+                                  </div>
+                                </div>
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="carParts">Car Parts</label>
+                                    <input type="text" class="form-control" value="${data.carParts}" name="carParts" required />
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="unitPrice">Unit Price</label>
+                                    <input type="number" class="form-control" value="${data.unitPrice}" name="unitPrice" required />
+                                  </div>
+                                </div>
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="quantity">Quantity</label>
+                                    <input type="number" class="form-control" name="quantity" value="${data.quantity}" required />
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" class="form-control" value="${data.amount}" name="amount" required />
+                                  </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-secondary">Update</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <button onclick="getId(event)" type="button" class="btn btn-danger btn-sm btn-delete-part" data-toggle="modal" data-part-id="${doc.id}" data-target="#deleteModal">
                     Delete
                   </button>
@@ -391,6 +400,32 @@
           });
         });
     }
+
+    const editCarPart = (event,id) => {
+      event.preventDefault();
+      db.collection("carParts").doc(id)
+        .update({
+          batchNum: event.target.batchNum.value,
+          partNum: event.target.partNum.value,
+          referenceNum: event.target.referenceNum.value,
+          category: event.target.category.value,
+          carParts: event.target.carParts.value,
+          unitPrice: event.target.unitPrice.value,
+          quantity: event.target.quantity.value,
+          amount: event.target.amount.value,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(function (docRef) {
+          // console.log("Document written with ID: ", docRef.id);
+          // event.target.reset();
+           window.location.href = window.location.href;
+          // $("#addPartModal").modal("toggle");
+        })
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+    };
+
     let itemID;
     function getId(event) {
       let item = event.target;
@@ -408,7 +443,6 @@
     }
 
     function deletePart() {
-      console.log("id", itemID);
       db.collection("carParts")
         .doc(itemID)
         .delete()
