@@ -45,7 +45,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h4>Recycle Bin</h4>
+          <h4>Trash</h4>
         </div>
       </div>
     </div>
@@ -71,98 +71,10 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="allParts">
-            <tr>
-              <td>12/01/2020</td>
-              <td>111</td>
-              <td>4234</td>
-              <td>43534</td>
-              <td>Body</td>
-              <td>Door</td>
-              <td>2000</td>
-              <td>4</td>
-              <td>55</td>
-              <td>Irene</td>
-              <td>
-                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                  data-target="#updatePartModal">
-                  Restore
-                </button>
-                <button onclick="getId(event)" type="button" class="btn btn-danger btn-sm btn-delete-part"
-                  data-toggle="modal" data-part-id="${doc.id}" data-target="#deleteModal">
-                  Delete permanently
-                </button>
-              </td>
-            </tr>
+          <tbody id="allDeleted">
 
-            <tr>
-              <td>12/01/2020</td>
-              <td>45543</td>
-              <td>45</td>
-              <td>144</td>
-              <td>Body</td>
-              <td>Door</td>
-              <td>22</td>
-              <td>4</td>
-              <td>55</td>
-              <td>Irene</td>
-              <td>
-                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                  data-target="#updatePartModal">
-                  Restore
-                </button>
-                <button onclick="getId(event)" type="button" class="btn btn-danger btn-sm btn-delete-part"
-                  data-toggle="modal" data-part-id="${doc.id}" data-target="#deleteModal">
-                  Delete permanently
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>12/01/2020</td>
-              <td>113</td>
-              <td>2343</td>
-              <td>44</td>
-              <td>Interior</td>
-              <td>Seats</td>
-              <td>202</td>
-              <td>4</td>
-              <td>53</td>
-              <td>Dorcas</td>
-              <td>
-                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                  data-target="#updatePartModal">
-                  Restore
-                </button>
-                <button onclick="getId(event)" type="button" class="btn btn-danger btn-sm btn-delete-part"
-                  data-toggle="modal" data-part-id="${doc.id}" data-target="#deleteModal">
-                  Delete permanently
-                </button>
-              </td>
-            </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Cancel
-          </button>
-          <button type="button" class="btn btn-danger" onclick="deletePart()">
-            Delete permanently
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -220,6 +132,99 @@
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA1KA-SgFHBqII0abXDZ5wi9XdHkqpiPBA",
+      authDomain: "volkswagen-g3.firebaseapp.com",
+      databaseURL: "https://volkswagen-g3.firebaseio.com",
+      projectId: "volkswagen-g3",
+      storageBucket: "volkswagen-g3.appspot.com",
+      messagingSenderId: "754101747048",
+      appId: "1:754101747048:web:4434e38f5f1635fc6c6add",
+    };
+  </script>
+
+  <script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
+    const getAllDeleted = () => {
+      var allDeletedParts = document.getElementById("allDeleted")
+      db.collection("trash")
+        .onSnapshot((querySnapshot) => {
+          allDeletedParts.innerHTML = ""
+          querySnapshot.forEach((doc) => {
+            let data = doc.data()
+            let newRow = `
+          <tr>
+              <td>12/01/2020</td>
+              <td>${data.batchNum}</td>
+              <td>${data.partNum}</td>
+              <td>${data.referenceNum}</td>
+              <td>${data.category}</td>
+              <td>${data.carParts}</td>
+              <td>${data.unitPrice}</td>
+              <td>${data.quantity}</td>
+              <td>${data.amount}</td>
+              <td>Irene</td>
+              <td>
+                <button onclick="restoreItem('${doc.id}')" type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                  data-target="#updatePartModal">
+                  Restore
+                </button>
+                <button type="button" class="btn btn-danger btn-sm btn-delete-part"
+                  data-toggle="modal" onclick="deleteFromTrash('${doc.id}')" data-part-id="${doc.id}" data-target="#deleteModal">
+                  Delete permanently
+                </button>
+              </td>
+          </tr>`
+            allDeletedParts.innerHTML = allDeletedParts.innerHTML + newRow
+          })
+        })
+    }
+
+    const restoreItem = (id) => {
+      db.collection('trash').doc(id)
+      .get()
+      .then((docRef) => {
+        return docRef.data()
+      })
+      .then((res) => {
+        db.collection('carParts')
+        .add(res)
+        .catch((e) => {
+          console.log(e);
+        })
+      })
+      .then(() => {
+        deleteFromTrash(id)
+      })
+    }
+
+    const deleteFromTrash = (id) => {
+      db.collection("trash")
+        .doc(id)
+        .delete()
+        .then(function () {
+          console.log("Document successfully deleted!");
+        })
+        .catch(function (error) {
+          console.error("Error removing document: ", error);
+        });
+    }
+
+    getAllDeleted()
+  </script>
 </body>
 
 </html>
