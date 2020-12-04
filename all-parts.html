@@ -163,7 +163,7 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="amount">Amount</label>
-                  <input type="number" class="form-control" name="amount" required />
+                  <input type="number" value="2000" disabled class="form-control" name="amount" required />
                 </div>
               </div>
 
@@ -311,8 +311,6 @@
           allPartsTable.innerHTML = "";
           let index = 0;
           querySnapshot.forEach((doc) => {
-            // console.log(`${doc.id} => ${doc.data().projectName}`);
-            // itemID = doc.id;
             let data = doc.data();
             index++;
             let newRow = `
@@ -347,7 +345,7 @@
                           </div>
                           <div class="modal-body">
                             <div class="row">
-                              <form class="mx-auto d-block parts-form" onsubmit="editCarPart(event,'${doc.id}')">
+                              <form class="mx-auto d-block parts-form" onsubmit="editCarPart(event,'${doc.id}','${index}')">
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <label for="batchNum">Batch Number</label>
@@ -436,7 +434,7 @@
       })
     }
 
-    const editCarPart = (event, id) => {
+    const editCarPart = (event, id, index) => {
       event.preventDefault();
       db.collection("carParts").doc(id)
         .update({
@@ -449,6 +447,9 @@
           quantity: event.target.quantity.value,
           amount: event.target.amount.value,
           updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(() => {
+          window.location.href = window.location.href
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);
